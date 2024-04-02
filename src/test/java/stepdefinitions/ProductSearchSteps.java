@@ -2,26 +2,24 @@ package stepdefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import utils.Base;
+import utils.Operations;
 
-
+import  objectRepository.SplashPageOR;
 import static org.junit.Assert.assertTrue;
 
 public class ProductSearchSteps extends Base {
 
     @When("I search for a product {string}")
     public void iSearchForAProduct(String productName) {
-        WebElement searchBox = driver.findElement(By.id("search-box"));
-        searchBox.sendKeys(productName);
-        WebElement searchButton = driver.findElement(By.id("search-button"));
-        searchButton.click();
+        Operations.sendText(SplashPageOR.searchField, productName, driver);
+        Operations.click(SplashPageOR.searchButton, driver);
     }
 
-    @Then("I should see search results")
-    public void iShouldSeeSearchResults() {
-        WebElement searchResults = driver.findElement(By.id("search-results"));
-        assertTrue(searchResults.isDisplayed());
+    @Then("I should see search results contain {string}")
+    public void iShouldSeeSearchResults(String productName) {
+        String searchResultCartText = Operations.getText(SplashPageOR.searchDes, driver);
+        assertTrue(searchResultCartText.contains(productName));
+
     }
 }

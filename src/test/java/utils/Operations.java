@@ -54,6 +54,12 @@ public class Operations {
         el.sendKeys(text);
     }
 
+    public static String getText(By locator, WebDriver driver){
+        WebElement el = findElement(locator, driver);
+        String elementText = el.getText();
+        return elementText;
+    }
+
     public static void matchText(By locator, String expectedText, WebDriver driver){
         WebElement el = findElement(locator, driver);
         String actualText = el.getText();
