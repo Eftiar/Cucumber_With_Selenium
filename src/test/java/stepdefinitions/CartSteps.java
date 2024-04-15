@@ -2,9 +2,12 @@ package stepdefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import objectRepository.ProductPageOR;
+import objectRepository.SplashPageOR;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.Base;
+import utils.Operations;
 
 
 import static org.junit.Assert.assertTrue;
@@ -13,14 +16,15 @@ public class CartSteps extends Base {
 
     @When("I add the product to the cart")
     public void iAddTheProductToTheCart() {
-        WebElement addToCartButton = driver.findElement(By.id("add-to-cart-button"));
-        addToCartButton.click();
+        Operations.click(SplashPageOR.searchDes, driver);
+        Operations.waitForPageToLoad(driver);
+        assertTrue(Operations.verifyElementIsPresent(ProductPageOR.addToCartButton, driver));
+        Operations.click(ProductPageOR.addToCartButton, driver);
     }
 
     @Then("I should see the product added to the cart")
     public void iShouldSeeTheProductAddedToTheCart() {
-        WebElement cartIcon = driver.findElement(By.id("cart-icon"));
-        assertTrue(cartIcon.isDisplayed());
+        assertTrue(Operations.verifyElementIsPresent(ProductPageOR.addedToCartText, driver));
     }
 
     @When("I proceed to checkout")

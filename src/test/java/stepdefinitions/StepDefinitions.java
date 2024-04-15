@@ -3,7 +3,10 @@ package stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import objectRepository.AuthenticationPage;
+import objectRepository.SplashPageOR;
 import utils.Base;
+import utils.Operations;
 
 public class StepDefinitions extends Base {
 
@@ -21,6 +24,17 @@ public class StepDefinitions extends Base {
     public void iShouldSeeThePageTitle(String expectedTitle) {
         String actualTitle = driver.getTitle();
         assert actualTitle.equals(expectedTitle) : "Page title mismatch";
-        quit();
+    }
+
+    @Then("I login with {string} and {string}")
+    public void iShouldLoggedIn(String userName, String password) {
+        Operations.click(SplashPageOR.loginButton, driver);
+//        Operations.waitForPageToLoad(driver);
+        Operations.click(AuthenticationPage.inputFieldPhone, driver);
+        Operations.sendText(AuthenticationPage.inputFieldPhone, userName, driver);
+        Operations.click(AuthenticationPage.inputFieldPassword, driver);
+        Operations.sendText(AuthenticationPage.inputFieldPassword, password, driver);
+//        Operations.waitForPageToLoad(driver);
+        Operations.verifyElementIsPresent(SplashPageOR.activeLoginStatus, driver);
     }
 }
