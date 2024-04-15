@@ -7,10 +7,10 @@
     <groupId>org.example</groupId>
     <artifactId>BDD_Cucumber_Project_With_Selenium</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
 
@@ -43,8 +43,41 @@
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.13.1</version>
+        <version>4.12</version>
         <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>1.2.5</version>
+    </dependency>
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-jvm-deps</artifactId>
+        <version>1.0.5</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>1.2.5</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-picocontainer</artifactId>
+        <version>1.2.5</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.aventstack</groupId>
+        <artifactId>extentreports</artifactId>
+        <version>3.1.2</version>
+    </dependency>
+    <dependency>
+        <groupId>com.vimalselvam</groupId>
+        <artifactId>cucumber-extentsreport</artifactId>
+        <version>3.0.2</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
@@ -53,34 +86,23 @@
         <version>7.1.0</version>
         <scope>test</scope>
     </dependency>
+
 </dependencies>
 
 <build>
 <plugins>
-    <!-- Compiler Plugin Configuration -->
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-            <source>${java.version}</source>
-            <target>${java.version}</target>
-        </configuration>
-    </plugin>
     <!-- Surefire Plugin Configuration (for running tests) -->
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
-        <configuration>
-            <testFailureIgnore>true</testFailureIgnore>
-            <argLine>-Dfile.encoding=UTF-8</argLine>
-            <includes>
-                <include>**/*Test.java</include>
-            </includes>
-        </configuration>
-    </plugin>
-</plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                <encoding>UTF-8</encoding>
+            </configuration>
+        </plugin>
+    </plugins>
 </build>
 
 </project>
